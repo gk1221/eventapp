@@ -5,7 +5,7 @@ import {
   START,
 } from "@eventstore/db-client";
 import { time } from "console";
-import { randomUUID } from "crypto";
+import { randomInt } from "crypto";
 
 import { readFileSync } from "fs";
 
@@ -28,20 +28,16 @@ const client = new EventStoreDBClient(
   }
 );
 async function simpleTest() {
-  const streamName = "account-1";
+  const streamName = "orderconference";
 
   const event = jsonEvent({
-    type: "myEventType",
+    type: "order-UFO",
     data: {
-      languages: ["typescript", "Python", "JavaScript"],
-      runtime: "NodeJS",
-      set: 2,
-      identiy: time(),
-      fox: true,
+      increment: randomInt(10),
     },
     metadata: {
-      resource: "Node.js",
-      log: time(),
+      name: "userA",
+      upbound: "200",
     },
   });
 
@@ -52,5 +48,4 @@ async function simpleTest() {
 
 setInterval(() => {
   simpleTest();
-}, 300);
-
+}, randomInt(5) * 1000);

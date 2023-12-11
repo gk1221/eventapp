@@ -16,14 +16,25 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### db setup(macos arm64)
+
+```
+mkdir certs
+docker compose up
+```
+
+### project setup
+
+copy Eventstore/project.js -> create projecttion
+
+### 網頁前端部分＝>
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+### DB 後段部分(Eventstore)=>
 
 ```sh
-npm run build
+npm run server
 ```
