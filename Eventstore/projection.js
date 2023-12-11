@@ -16,11 +16,11 @@ fromStream("orderconference")
       };
     },
     "order-UFO": function (state, event) {
-      state.sum += event.data.increment;
+      state.sum = parseInt(state.sum) + parseInt(event.data.increment);
       var user = event.metadata.name;
 
-      if (user === "userA") state.userA += event.data.increment;
-      else state.userB += event.data.increment;
+      if (user === "userA") state.userA += parseInt(event.data.increment);
+      else state.userB += parseInt(event.data.increment);
     },
   })
   .transformBy(function (state) {

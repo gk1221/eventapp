@@ -15,8 +15,10 @@ const response = ref(null);
 const fetchData = async () => {
   const result = await axios.get("http://localhost:3000/result");
   console.log(result.data);
-  response.value = result.data[result.data.length - 1];
+  response.value = result.data[0];
 };
+
+setInterval(() => fetchData(), 3000);
 
 fetchData();
 </script>
