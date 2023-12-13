@@ -2,10 +2,7 @@ const server = require("fastify");
 const readEvent = require("./readmod.js");
 const cors = require("@fastify/cors");
 const writeEvent = require("./writemod.js");
-<<<<<<< HEAD
 const returnhost = require("./check.js");
-=======
->>>>>>> 3b3155418d8bf7dabe112cbc81f8d6e3e984c5f9
 
 const dbserver = server().register(cors, {});
 
@@ -57,13 +54,10 @@ dbserver.get("/result", async function (req, res) {
   return data;
 });
 
-<<<<<<< HEAD
 dbserver.get("/check", function (req, res) {
   const data = returnhost();
 
   return data;
 });
 
-=======
->>>>>>> 3b3155418d8bf7dabe112cbc81f8d6e3e984c5f9
 dbserver.listen(3000, "127.0.0.1");

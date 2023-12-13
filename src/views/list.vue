@@ -30,11 +30,7 @@ const fetchData = async () => {
   });
 };
 
-<<<<<<< HEAD
-//setInterval(() => fetchData(), 3000);
-=======
 setInterval(() => fetchData(), 3000);
->>>>>>> 3b3155418d8bf7dabe112cbc81f8d6e3e984c5f9
 
 fetchData();
 </script>

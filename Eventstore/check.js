@@ -23,7 +23,7 @@ const returnhost = async () => {
     await checkhost(element);
   });
   console.log(output);
-  return output;
+   return output;
 };
 
 module.exports = returnhost;
