@@ -24,7 +24,11 @@ docker compose up
 ```
 
 ### project setup
+<<<<<<< HEAD
 
+=======
+進到UI介面projection->New projection
+>>>>>>> 3b3155418d8bf7dabe112cbc81f8d6e3e984c5f9
 copy Eventstore/project.js -> create projecttion
 
 ### 網頁前端部分＝>
