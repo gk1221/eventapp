@@ -14,7 +14,7 @@ const response = ref(null);
 
 const fetchData = async () => {
   const result = await axios.get("http://localhost:3000/result");
-  console.log(result.data);
+
   response.value = result.data[0];
 };
 

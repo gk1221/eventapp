@@ -2,6 +2,7 @@ const server = require("fastify");
 const readEvent = require("./readmod.js");
 const cors = require("@fastify/cors");
 const writeEvent = require("./writemod.js");
+const returnhost = require("./check.js");
 
 const dbserver = server().register(cors, {});
 
@@ -50,6 +51,12 @@ dbserver.post("/order", async function (req, res) {
 
 dbserver.get("/result", async function (req, res) {
   const data = await readEvent("order_result");
+  return data;
+});
+
+dbserver.get("/check", function (req, res) {
+  const data = returnhost();
+
   return data;
 });
 
