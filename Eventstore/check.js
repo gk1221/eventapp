@@ -1,7 +1,8 @@
-const { exec } = require("child_process");
+const { exec, spawn } = require("child_process");
 
 let output = [];
 const host = ["node1", "node2", "node3"];
+let out = "";
 
 const checkhost = async (container_name) => {
   await exec(
@@ -23,7 +24,22 @@ const returnhost = async () => {
     await checkhost(element);
   });
   console.log(output);
-   return output;
+  return output;
 };
 
-module.exports = returnhost;
+const hostcheck = async (host, data = null) => {
+  const cmd = exec(
+    `docker container inspect -f '{{.State.Status}}' ${host}.eventstore`
+  );
+
+  cmd.stdout.on("data", async (output) => {
+    console.log("host=", host, output);
+    setTimeout(() => {
+      out = output;
+    }, 300);
+  });
+
+  return { host: host, status: out };
+};
+
+module.exports = { returnhost, hostcheck };
