@@ -3,6 +3,7 @@ const readEvent = require("./readmod.js");
 const cors = require("@fastify/cors");
 const writeEvent = require("./writemod.js");
 const { returnhost, hostcheck } = require("./check.js");
+const fs = require("fs");
 
 const dbserver = server().register(cors, {});
 
@@ -63,11 +64,17 @@ dbserver.get("/check", function (req, res) {
 dbserver.get("/check/:host", async function (req, res) {
   const host = req.params.host;
 
-  let result = "";
+  let result = "OUO";
 
-  const data = hostcheck(host);
+  const data = await hostcheck(host);
 
-  return data;
+  const fileContent = fs.readFileSync(
+    `./Eventstore/${host}.txt`,
+    (encoding = "utf-8")
+  );
+  const lines = fileContent.split("\n");
+  console.log(lines[lines.length - 2]);
+  return lines[lines.length - 2].split(",");
 });
 
 dbserver.listen(3000, "127.0.0.1");

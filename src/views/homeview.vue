@@ -7,42 +7,46 @@
     <router-link :to="{ name: 'state' }"> state </router-link>>
   </list>
   <div>
-    <list v-for="host in response.value">
-      {{ host }}
-      {{ host.host }}
-      <img
-        v-if="host.status.includes('running')"
-        src="@/assets/green.png"
-        alt="running"
-      />
-      <img v-else src="@/assets/red.png" alt="stopping" />
+    <list v-for="i in host">
+      <router-link :to="{ path: 'host/' + i }"> {{ i }} </router-link>>
     </list>
+  </div>
+
+  <div style="display: flex; justify-content: space-between">
+    <div v-show="showrender" style="min-width: 420px">
+      <Host :prophost="'node1'" />
+    </div>
+
+    <div v-show="showrender2" style="min-width: 420px">
+      <Host :prophost="'node2'" />
+    </div>
+    <div v-show="showrender3" style="min-width: 420px">
+      <Host :prophost="'node3'" />
+    </div>
   </div>
 </template>
 
 <script setup>
 import axios from "axios";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import Host from "./host.vue";
 
-//{host, status}
-const any = ["node1", "node2", "node3"];
-let hosts = [];
+const host = ["node1", "node2", "node3"];
+const showrender = ref(true);
+const showrender2 = ref(false);
+const showrender3 = ref(false);
 
-const response = ref([]);
+onMounted(() => {
+  // const mount = setTimeout(() => {
+  //   showrender.value = true;
+  // }, 200); // 2秒後顯示內容
 
-const fetchData = async () => {
-  const result1 = await axios.get("http://localhost:3000/check/node1");
-  const result2 = await axios.get("http://localhost:3000/check/node2");
-  const result3 = await axios.get("http://localhost:3000/check/node3");
-  console.log(result2.data);
-  response.value = [];
-  await response.value.push(result1.data);
-  await response.value.push(result2.data);
-  await response.value.push(result3.data);
-};
+  const mount2 = setTimeout(() => {
+    showrender2.value = true;
+  }, 100); // 2秒後顯示內容
 
-setInterval(() => {
-  fetchData();
-  console.log("resp=", response.value);
-}, 5000);
+  const mount3 = setTimeout(() => {
+    showrender3.value = true;
+  }, 100); // 2秒後顯示內容
+});
 </script>

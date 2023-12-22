@@ -1,4 +1,6 @@
 const { exec, spawn } = require("child_process");
+const fs = require("fs");
+const moment = require("moment");
 
 let output = [];
 const host = ["node1", "node2", "node3"];
@@ -34,9 +36,10 @@ const hostcheck = async (host, data = null) => {
 
   cmd.stdout.on("data", async (output) => {
     console.log("host=", host, output);
-    setTimeout(() => {
-      out = output;
-    }, 300);
+    fs.appendFileSync(
+      `./Eventstore/${host}.txt`,
+      `${moment()},${host}, ${output} `
+    );
   });
 
   return { host: host, status: out };
