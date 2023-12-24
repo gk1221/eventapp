@@ -1,8 +1,9 @@
 <template>
+   <Headercom />
   <router-view />
+ 
 </template>
 
-<script>
-import Order from "./views/order.vue";
-import State from "./views/state.vue";
+<script setup>
+import Headercom from "./components/header.vue";
 </script>

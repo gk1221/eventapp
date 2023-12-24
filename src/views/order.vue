@@ -1,5 +1,5 @@
 <template>
-  <Header />
+
   <div class="cwrapper alt">
     <div class="content">
       <div class="cbox fleft">
@@ -59,7 +59,7 @@
 import axios from "axios";
 import { ref } from "vue";
 
-import Header from "../components/header.vue"
+
 import List from "./list.vue"
 
 // const userName = ref("userA");
