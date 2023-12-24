@@ -1,8 +1,16 @@
 <template>
-  list
-  <div v-for="data in response">
-    <p>{{ data.language }}</p>
-    <span>{{ data.people }} +{{ data.increment }} @{{ data.time }}</span>
+  <h3>出價紀錄</h3>
+  <div class="ultable">
+    <ul class="lister lheader">
+      <li>出價時間</li>
+      <li>出價者</li>
+      <li>出價增額/出價總額</li>
+    </ul>
+    <ul class="lister" v-for="data in response">
+      <li>{{ data.time }}</li>
+      <li>{{ data.people }}</li>
+      <li>{{ data.increment }}/{{ data.price }}</li>
+    </ul>
   </div>
 </template>
 
