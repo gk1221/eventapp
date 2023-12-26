@@ -1,9 +1,9 @@
 <template>
   <div>Host Name = {{ response[1] }}</div>
   <div>
-    Status =
+    Status={{ response[2] }}
     <img
-      v-if="response[2] === ' running'"
+      v-if="response[2] === 'running'"
       src="@/assets/green.png"
       alt="running"
     />
@@ -40,4 +40,7 @@ async function setData() {
   if (response.value === null) response.value = "Host error";
 }
 setData();
+setTimeout(() => {
+  setData();
+}, 800);
 </script>

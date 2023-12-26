@@ -1,24 +1,24 @@
 <template>
-  <h1>state</h1>
-  <div>Things name: {{ response.thing }}</div>
-  <div>userA order: {{ response.userA }}</div>
-  <div>userB order: {{ response.userB }}</div>
-  <div>NOW order: {{ response.sum }}</div>
+  <div class="cwrapper">
+    <div class="content mt-18">
+      <Host :prophost="'node1'" />
+    </div>
+    <div class="content mt-18">
+      <Host :prophost="'node2'" />
+    </div>
+    <div class="content mt-18">
+      <Host :prophost="'node3'" />
+    </div>
+  </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import axios from "axios";
-
-const response = ref(null);
-
-const fetchData = async () => {
-  const result = await axios.get("http://localhost:3000/result");
-  console.log(result.data);
-  response.value = result.data[result.data.length - 1];
-};
-
-setInterval(() => fetchData(), 3000);
-
-fetchData();
+import Host from "@/views/Host.vue";
 </script>
+
+<style scoped>
+.mt-18 {
+  margin-top: 50px;
+}
+</style>

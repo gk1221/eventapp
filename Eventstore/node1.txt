@@ -1,81 +1,52 @@
-1703267077839,node1, exited
- 1703267107256,node1, exited
- 1703267112807,node1, exited
- 1703267113232,node1, exited
- 1703267113517,node1, exited
- 1703267113854,node1, exited
- 1703267133062,node1, exited
- 1703267133528,node1, exited
- 1703267156232,node1, exited
- 1703267156264,node1, exited
- 1703267156636,node1, exited
- 1703267156752,node1, exited
- 1703267157000,node1, exited
- 1703267158803,node1, exited
- 1703267159275,node1, exited
- 1703267162118,node1, exited
- 1703267162605,node1, exited
- 1703267164529,node1, exited
- 1703267165018,node1, exited
- 1703267166012,node1, exited
- 1703267166495,node1, exited
- 1703267168141,node1, exited
- 1703267168594,node1, exited
- 1703267197977,node1, exited
- 1703267197978,node1, exited
- 1703267198673,node1, exited
- 1703267203790,node1, exited
- 1703267203793,node1, exited
- 1703267208713,node1, exited
- 1703267208718,node1, exited
- 1703267213740,node1, exited
- 1703267213742,node1, exited
- 1703267218720,node1, exited
- 1703267218724,node1, exited
- 1703267223688,node1, exited
- 1703267228597,node1, exited
- 1703267228669,node1, exited
- 1703267233604,node1, exited
- 1703267233677,node1, exited
- 1703267238552,node1, exited
- 1703267238645,node1, exited
- 1703267243544,node1, exited
- 1703267243660,node1, exited
- 1703267248586,node1, exited
- 1703267248676,node1, exited
- 1703267253554,node1, exited
- 1703267253651,node1, exited
- 1703267258595,node1, exited
- 1703267258656,node1, exited
- 1703267263588,node1, exited
- 1703267263688,node1, exited
- 1703267268534,node1, exited
- 1703267268647,node1, exited
- 1703267273571,node1, exited
- 1703267273663,node1, exited
- 1703267275708,node1, exited
- 1703267278587,node1, exited
- 1703267278674,node1, exited
- 1703267283564,node1, exited
- 1703267283659,node1, exited
- 1703267288594,node1, exited
- 1703267288671,node1, exited
- 1703267293555,node1, exited
- 1703267293662,node1, exited
- 1703267298570,node1, exited
- 1703267298659,node1, exited
- 1703267303579,node1, exited
- 1703267303671,node1, exited
- 1703267317689,node1, exited
- 1703267322824,node1, exited
- 1703267327835,node1, exited
- 1703267332850,node1, exited
- 1703267337904,node1, exited
- 1703267342850,node1, exited
- Sat Dec 23 2023 01:56:48 GMT+0800,node1, running
- Sat Dec 23 2023 01:56:53 GMT+0800,node1, running
- Sat Dec 23 2023 01:57:04 GMT+0800,node1, running
- Sat Dec 23 2023 01:57:10 GMT+0800,node1, running
- Sat Dec 23 2023 01:57:27 GMT+0800,node1, running
- Sat Dec 23 2023 01:57:29 GMT+0800,node1, running
- 
+Wed Dec 27 2023 10:53:30 GMT+0800,node1, 
+ Wed Dec 27 2023 10:53:30 GMT+0800,node1, 
+ Wed Dec 27 2023 10:55:26 GMT+0800,node1, 
+ Wed Dec 27 2023 10:55:26 GMT+0800,node1, 
+ Wed Dec 27 2023 10:55:50 GMT+0800,node1, 
+ Wed Dec 27 2023 10:55:51 GMT+0800,node1, 
+ Wed Dec 27 2023 10:55:57 GMT+0800,node1, 
+ Wed Dec 27 2023 10:55:57 GMT+0800,node1, 
+ Wed Dec 27 2023 10:57:16 GMT+0800,node1, 
+ Wed Dec 27 2023 10:57:17 GMT+0800,node1, 
+ Wed Dec 27 2023 10:58:25 GMT+0800,node1, 
+ Wed Dec 27 2023 10:58:26 GMT+0800,node1, 
+ Wed Dec 27 2023 10:58:29 GMT+0800,node1, 
+ Wed Dec 27 2023 10:58:30 GMT+0800,node1, 
+ Wed Dec 27 2023 12:05:16 GMT+0800,node1, 'running'
+ Wed Dec 27 2023 12:05:17 GMT+0800,node1, 'running'
+ Wed Dec 27 2023 12:05:18 GMT+0800,node1, 'running'
+ Wed Dec 27 2023 12:05:19 GMT+0800,node1, 'running'
+ Wed Dec 27 2023 12:05:39 GMT+0800,node1, 'running'
+ Wed Dec 27 2023 12:05:39 GMT+0800,node1, 'running'
+ Wed Dec 27 2023 12:05:53 GMT+0800,node1, 'running'
+ Wed Dec 27 2023 12:05:53 GMT+0800,node1, 'running'
+ Wed Dec 27 2023 12:06:43 GMT+0800,node1, 'running'
+ Wed Dec 27 2023 12:06:44 GMT+0800,node1, 'running'
+ Wed Dec 27 2023 12:07:08 GMT+0800,node1, 'running'
+ Wed Dec 27 2023 12:07:08 GMT+0800,node1, 'running'
+ Wed Dec 27 2023 12:07:24 GMT+0800,node1, 'running'
+ Wed Dec 27 2023 12:07:25 GMT+0800,node1, 'running'
+ Wed Dec 27 2023 12:07:55 GMT+0800,node1, 'running'
+ Wed Dec 27 2023 12:07:56 GMT+0800,node1, 'running'
+ Wed Dec 27 2023 12:38:21 GMT+0800,node1, 'running'
+ Wed Dec 27 2023 12:38:22 GMT+0800,node1, 'running'
+ Wed Dec 27 2023 12:38:42 GMT+0800,node1, 'running'
+ Wed Dec 27 2023 12:38:43 GMT+0800,node1, 'running'
+ Wed Dec 27 2023 12:38:50 GMT+0800,node1, 'running'
+ Wed Dec 27 2023 12:38:51 GMT+0800,node1, 'running'
+ Wed Dec 27 2023 12:39:17 GMT+0800,node1, 'running'
+ Wed Dec 27 2023 12:39:19 GMT+0800,node1, 'running'
+ Wed Dec 27 2023 12:59:32 GMT+0800,node1,
+Wed Dec 27 2023 12:59:32 GMT+0800,node1,
+Wed Dec 27 2023 13:00:09 GMT+0800,node1,
+Wed Dec 27 2023 13:00:10 GMT+0800,node1,
+Wed Dec 27 2023 13:00:13 GMT+0800,node1,
+Wed Dec 27 2023 13:00:13 GMT+0800,node1,
+Wed Dec 27 2023 14:03:43 GMT+0800,node1,running
+Wed Dec 27 2023 14:03:44 GMT+0800,node1,running
+Wed Dec 27 2023 14:07:20 GMT+0800,node1,running
+Wed Dec 27 2023 14:07:21 GMT+0800,node1,running
+Wed Dec 27 2023 14:10:07 GMT+0800,node1,running
+Wed Dec 27 2023 14:10:08 GMT+0800,node1,running
+Wed Dec 27 2023 14:10:16 GMT+0800,node1,running
+Wed Dec 27 2023 14:10:17 GMT+0800,node1,running

@@ -64,8 +64,6 @@ dbserver.get("/check", function (req, res) {
 dbserver.get("/check/:host", async function (req, res) {
   const host = req.params.host;
 
-  let result = "OUO";
-
   const data = await hostcheck(host);
 
   const fileContent = fs.readFileSync(

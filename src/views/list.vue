@@ -20,24 +20,33 @@ import axios from "axios";
 import moment from "moment";
 
 const response = ref(null);
+const ListType = defineProps({ orderType: String });
+
+console.log(ListType["orderType"]);
 
 const formattedDate = (time) => moment(time).format("YYYY/MM/DD HH:mm:ss");
 
 const fetchData = async () => {
-  const result = await axios.get("http://localhost:3000/list");
+  const result = await axios.get(`http://localhost:3000/list`);
   //console.log(result);
-  //response.value = { ...result.data, tidme: "SWW" };
+
   response.value = result.data.map((item) => {
     // 將每個物件複製到新的物件中
-    const newItem = { ...item };
 
-    // 將 time 屬性值轉換成 Date 物件並存入 newItem
-    newItem.time = formattedDate(item.time);
+    if (item.type === ListType["orderType"]) {
+      console.log(item.type);
+      console.log(ListType["orderType"] === item.type);
 
-    return newItem;
+      const newItem = { ...item };
+
+      // 將 time 屬性值轉換成 Date 物件並存入 newItem
+      newItem.time = formattedDate(item.time);
+
+      return newItem;
+    }
   });
 };
-
+console.log(response.value);
 setInterval(() => fetchData(), 3000);
 
 fetchData();

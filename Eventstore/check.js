@@ -38,7 +38,7 @@ const hostcheck = async (host, data = null) => {
     console.log("host=", host, output);
     fs.appendFileSync(
       `./Eventstore/${host}.txt`,
-      `${moment()},${host}, ${output} `
+      `${moment()},${host},${output}`
     );
   });
 
