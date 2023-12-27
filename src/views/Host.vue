@@ -38,8 +38,9 @@ const setData = async () => {
   response.value = await fetchData(host);
 
   response.value[0] = formattedDate(response.value[0]);
+  //console.log(response.value[2].replace("'", "").replace("'", ""));
+  response.value[2] = response.value[2].replace("'", "").replace("'", "");
 
-  console.log("cout", response.value);
   if (response.value === null) response.value = "Host error";
 };
 setData();

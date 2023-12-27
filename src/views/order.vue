@@ -111,7 +111,9 @@ const SubmitEvent = async () => {
   if (upperBound.value < NoWPrice.value + userPrice.value) {
     alert("已超過最高出價!");
   } else {
+    await fetchIncrement();
     const result = await axios.post("http://localhost:3000/order", body);
+
     alert(result.data);
   }
 };
