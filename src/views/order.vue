@@ -13,11 +13,11 @@
         </div>
         <div class="flist">
           <p>起標金額</p>
-          <span class="big red">6000</span>
+          <span class="big red">{{ StartPrice }}</span>
         </div>
         <div class="flist">
           <p>目前出價</p>
-          <span>無</span>
+          <span>{{ NoWPrice }}</span>
         </div>
         <div class="flist">
           <p>起標時間</p>
@@ -78,28 +78,47 @@ const upperBound = ref(200);
 
 const pic = ref(null);
 
-function imgLarger() {
+const StartPrice = 60;
+const AllIncrement = ref(0);
+const NoWPrice = ref(0);
+
+const fetchIncrement = async (type) => {
+  const result = await axios.get("http://localhost:3000/result");
+  AllIncrement.value = result.data[0];
+
+  NoWPrice.value = AllIncrement.value.sum + StartPrice;
+  console.log(NoWPrice.value);
+};
+
+const imgLarger = () => {
   const item = pic.value;
   if (item.classList.contains("larger")) {
     item.classList.remove("larger");
   } else {
     item.classList.add("larger");
   }
-}
+};
 
 const SubmitEvent = async () => {
   const body = {
     username: userName.value,
     type: Sellitem.value,
-    upbound: upperBound.value,
+    price: NoWPrice.value,
     increment: userPrice.value,
   };
-  console.log(body);
 
-  const result = await axios.post("http://localhost:3000/order", body);
-  console.log(result);
-  alert(result.data);
+  if (upperBound.value < NoWPrice.value) {
+    alert("已超過最高出價!");
+  } else {
+    const result = await axios.post("http://localhost:3000/order", body);
+    alert(result.data);
+  }
 };
+
+fetchIncrement();
+setInterval(() => {
+  fetchIncrement();
+}, 3000);
 </script>
 
 <style scoped>

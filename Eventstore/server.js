@@ -11,7 +11,7 @@ dbserver.get("/test", function (req, res) {
   console.log("/test");
   return { name: "HEA" };
 });
-
+//列出所有
 dbserver.get("/list", async function (req, res) {
   try {
     const data = await readEvent("orderconference");
@@ -22,16 +22,7 @@ dbserver.get("/list", async function (req, res) {
     return { error: "An error occurred while fetching data" };
   }
 });
-
-dbserver.get("/order1", function (req, res) {
-  console.log("/order1");
-  return { name: "userA" };
-});
-
-dbserver.post("/order2", function (req, res) {
-  return reply.status(200).send({ message: "Hello World" });
-});
-
+//下單
 dbserver.post("/order", async function (req, res) {
   //doing
   console.log("/order");
@@ -41,7 +32,7 @@ dbserver.post("/order", async function (req, res) {
       newEvent.type,
       newEvent.username,
       newEvent.increment,
-      newEvent.upbound
+      newEvent.price
     );
     return "OK";
   } catch (error) {
@@ -49,7 +40,7 @@ dbserver.post("/order", async function (req, res) {
     return { error: "An error occurred while creating the event" };
   }
 });
-
+//列出projection 結果
 dbserver.get("/result", async function (req, res) {
   const data = await readEvent("order_result");
   return data;

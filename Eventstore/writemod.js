@@ -35,7 +35,7 @@ const client = new EventStoreDBClient(
     password: "changeit",
   }
 );
-const writeEvent = async (type, username, increatment, upbound) => {
+const writeEvent = async (type, username, increatment, nowprice) => {
   const streamName = "orderconference";
 
   const event = jsonEvent({
@@ -44,8 +44,8 @@ const writeEvent = async (type, username, increatment, upbound) => {
       increment: increatment,
     },
     metadata: {
-      name: username,
-      upbound: upbound,
+      UserName: username,
+      NowPrice: nowprice,
     },
   });
 
