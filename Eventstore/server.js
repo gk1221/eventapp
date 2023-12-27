@@ -41,8 +41,9 @@ dbserver.post("/order", async function (req, res) {
   }
 });
 //列出projection 結果
-dbserver.get("/result", async function (req, res) {
-  const data = await readEvent("order_result");
+dbserver.get("/result/:type", async function (req, res) {
+  const type = req.params.type;
+  const data = await readEvent(type);
   return data;
 });
 

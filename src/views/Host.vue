@@ -1,7 +1,7 @@
 <template>
   <div>Host Name = {{ response[1] }}</div>
-  <div>
-    Status={{ response[2] }}
+  <div class="midline">
+    <span>Status=</span>
     <img
       v-if="response[2] === 'running'"
       src="@/assets/green.png"
@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onBeforeUnmount } from "vue";
 import { useRoute } from "vue-router";
 import axios from "axios";
 import moment from "moment";
@@ -25,22 +25,37 @@ const host = route.params.host || props.prophost;
 
 const response = ref([]);
 
+const formattedDate = (time) => moment(time).format("YYYY/MM/DD HH:mm:ss");
+
 const fetchData = async (node) => {
   const result = await axios.get(`http://localhost:3000/check/${node}`);
   console.log(result.data);
+
   return result.data;
 };
-async function setData() {
+
+const setData = async () => {
   response.value = await fetchData(host);
 
-  const formattedDate = (time) => moment(time).format("YYYY/MM/DD HH:mm:ss");
   response.value[0] = formattedDate(response.value[0]);
 
   console.log("cout", response.value);
   if (response.value === null) response.value = "Host error";
-}
+};
 setData();
-setTimeout(() => {
+
+const timer = setInterval(() => {
   setData();
-}, 800);
+}, 3000);
+
+onBeforeUnmount(() => {
+  clearInterval(timer);
+});
 </script>
+
+<style scoped>
+.midline {
+  display: flex;
+  align-items: center;
+}
+</style>

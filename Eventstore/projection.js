@@ -1,5 +1,5 @@
 options({
-  resultStreamName: "order_result",
+  resultStreamName: "order_result_Apple",
   $includeLinks: false,
   reorderEvents: false,
   processingLag: 0,
@@ -10,16 +10,20 @@ fromStream("orderconference")
     $init: function () {
       return {
         sum: 0,
-        user: {},
-        thing: "order-UFO",
+        users: {},
+        thing: "Apple iPhone 12 Pro 256G",
       };
     },
-    "order-UFO": function (state, event) {
-      state.sum = parseInt(state.sum) + parseInt(event.data.increment);
-      var user = event.metadata.name;
+    "Apple iPhone 12 Pro 256G": function (state, event) {
+      state.sum += parseInt(event.data.increment);
 
-      if (user) state.userA += parseInt(event.data.increment);
-      else state.userB += parseInt(event.data.increment);
+      var user = event.metadata.UserName;
+
+      if (!state.users.hasOwnProperty(user)) {
+        state.users[user] = event.data.increment;
+      } else {
+        state.users[user] += event.data.increment;
+      }
     },
   })
   .transformBy(function (state) {

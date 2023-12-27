@@ -13,11 +13,11 @@
         </div>
         <div class="flist">
           <p>起標金額</p>
-          <span class="big red">{{ StartPrice }}</span>
+          <span>{{ StartPrice }}</span>
         </div>
-        <div class="flist">
+        <div class="flist boxdiv">
           <p>目前出價</p>
-          <span>{{ NoWPrice }}</span>
+          <span class="big red">{{ NoWPrice }}</span>
         </div>
         <div class="flist">
           <p>起標時間</p>
@@ -67,7 +67,7 @@
 
 <script setup>
 import axios from "axios";
-import { ref } from "vue";
+import { ref, onBeforeUnmount } from "vue";
 
 import List from "./list.vue";
 
@@ -83,11 +83,12 @@ const AllIncrement = ref(0);
 const NoWPrice = ref(0);
 
 const fetchIncrement = async (type) => {
-  const result = await axios.get("http://localhost:3000/result");
+  const result = await axios.get(
+    `http://localhost:3000/result/order_result_Apple`
+  );
   AllIncrement.value = result.data[0];
 
   NoWPrice.value = AllIncrement.value.sum + StartPrice;
-  console.log(NoWPrice.value);
 };
 
 const imgLarger = () => {
@@ -107,7 +108,7 @@ const SubmitEvent = async () => {
     increment: userPrice.value,
   };
 
-  if (upperBound.value < NoWPrice.value) {
+  if (upperBound.value < NoWPrice.value + userPrice.value) {
     alert("已超過最高出價!");
   } else {
     const result = await axios.post("http://localhost:3000/order", body);
@@ -116,9 +117,13 @@ const SubmitEvent = async () => {
 };
 
 fetchIncrement();
-setInterval(() => {
+const timer = setInterval(() => {
   fetchIncrement();
 }, 3000);
+
+onBeforeUnmount(() => {
+  clearInterval(timer);
+});
 </script>
 
 <style scoped>

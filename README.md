@@ -2,10 +2,6 @@
 
 This template should help get you started developing with Vue 3 in Vite.
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
 ## Customize configuration
 
 See [Vite Configuration Reference](https://vitejs.dev/config/).
@@ -23,12 +19,9 @@ mkdir certs
 docker compose up
 ```
 
-### project setup
-<<<<<<< HEAD
+### DB Projection setup
 
-=======
-進到UI介面projection->New projection
->>>>>>> 3b3155418d8bf7dabe112cbc81f8d6e3e984c5f9
+進到 UI 介面 projection->New projection
 copy Eventstore/project.js -> create projecttion
 
 ### 網頁前端部分＝>
@@ -41,4 +34,10 @@ npm run dev
 
 ```sh
 npm run server
+```
+
+### 查看機器狀況
+
+```
+⬆⬆⬇⬇⬅➡️⬅➡BABA
 ```

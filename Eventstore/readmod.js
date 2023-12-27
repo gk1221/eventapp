@@ -50,16 +50,17 @@ const readEvent = async (stream) => {
   const collectedEventData = [];
 
   for await (const resolvedEvent of events) {
-    // console.log(1);
+    //console.log(resolvedEvent);
 
     collectedEventData.push({
       ...resolvedEvent.event.data,
       type: resolvedEvent.event.type,
-      people: resolvedEvent.event.metadata.name,
+      people: resolvedEvent.event.metadata.UserName,
       time: resolvedEvent.event.created,
+      orderprice: resolvedEvent.event.metadata.NowPrice,
     });
   }
-  console.log(collectedEventData);
+  //console.log(collectedEventData);
 
   return collectedEventData;
 };
