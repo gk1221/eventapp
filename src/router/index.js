@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import list from "@/views/list.vue";
 import order from "@/views/order.vue";
 import state from "@/views/state.vue";
 import Host from "@/views/Host.vue";
+import item from "@/views/item.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,9 +20,9 @@ const router = createRouter({
       component: order,
     },
     {
-      path: "/list",
-      name: "list",
-      component: list,
+      path: "/item",
+      name: "item",
+      component: item,
     },
     {
       path: "/state",

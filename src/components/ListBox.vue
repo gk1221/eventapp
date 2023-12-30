@@ -9,11 +9,7 @@
     <ul class="lister" v-for="data in response">
       <li>{{ data.time }}</li>
       <li>{{ data.people }}</li>
-      <li>
-        {{ data.increment }}/{{
-          parseInt(data.orderprice) + parseInt(data.increment)
-        }}
-      </li>
+      <li>{{ data.increment }}/{{ parseInt(data.orderprice) }}</li>
     </ul>
   </div>
 </template>
@@ -26,29 +22,25 @@ import moment from "moment";
 const response = ref(null);
 const ListType = defineProps({ orderType: String });
 
-console.log(ListType["orderType"]);
-
 const formattedDate = (time) => moment(time).format("YYYY/MM/DD HH:mm:ss");
 
 const fetchData = async () => {
   const result = await axios.get(`http://localhost:3000/list`);
-  //console.log(result);
-
-  response.value = result.data.map((item) => {
-    // 將每個物件複製到新的物件中
-
-    if (item.type === ListType["orderType"]) {
-      //console.log(item.type);
-      //console.log(ListType["orderType"] === item.type);
-
-      const newItem = { ...item };
-
-      // 將 time 屬性值轉換成 Date 物件並存入 newItem
-      newItem.time = formattedDate(item.time);
-
-      return newItem;
-    }
-  });
+  //console.log(result.data);
+  if (result.data !== "Error") {
+    response.value = result.data
+      .filter((item) => item.type === ListType["orderType"])
+      .map((item) => {
+        // 將每個物件複製到新的物件中
+        if (item.type === ListType["orderType"]) {
+          const newItem = { ...item };
+          newItem.time = formattedDate(item.time);
+          return newItem;
+        }
+      });
+  } else {
+    console.log("Fetching List data Error!");
+  }
 };
 
 fetchData();

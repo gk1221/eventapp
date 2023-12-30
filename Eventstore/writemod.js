@@ -1,9 +1,4 @@
-const {
-  EventStoreDBClient,
-  jsonEvent,
-  FORWARDS,
-  START,
-} = require("@eventstore/db-client");
+const { EventStoreDBClient, jsonEvent } = require("@eventstore/db-client");
 const { time } = require("console");
 const { randomUUID } = require("crypto");
 
@@ -35,8 +30,8 @@ const client = new EventStoreDBClient(
     password: "changeit",
   }
 );
-const writeEvent = async (type, username, increatment, nowprice) => {
-  const streamName = "orderconference";
+const writeEvent = async (type, username, increatment, nowprice, stream) => {
+  const streamName = stream;
 
   const event = jsonEvent({
     type: type,
@@ -54,4 +49,24 @@ const writeEvent = async (type, username, increatment, nowprice) => {
   return appendResult.success;
 };
 
-module.exports = writeEvent;
+const addItem = async (type, ItemName, picURL, etime, price, stream) => {
+  const streamName = stream;
+
+  const event = jsonEvent({
+    type: type,
+    data: {
+      ItemName: ItemName,
+      Picture: picURL,
+      StartPrice: price,
+    },
+    metadata: {
+      Endtime: etime,
+    },
+  });
+
+  const appendResult = await client.appendToStream(streamName, event);
+
+  return appendResult.success;
+};
+
+module.exports = { writeEvent, addItem };
