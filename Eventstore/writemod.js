@@ -1,4 +1,9 @@
-const { EventStoreDBClient, jsonEvent } = require("@eventstore/db-client");
+const {
+  EventStoreDBClient,
+  jsonEvent,
+
+  ANY,
+} = require("@eventstore/db-client");
 const { time } = require("console");
 const { randomUUID } = require("crypto");
 
@@ -64,7 +69,9 @@ const addItem = async (type, ItemName, picURL, etime, price, stream) => {
     },
   });
 
-  const appendResult = await client.appendToStream(streamName, event);
+  const appendResult = await client.appendToStream(streamName, event, {
+    expectedRevision: ANY,
+  });
 
   return appendResult.success;
 };

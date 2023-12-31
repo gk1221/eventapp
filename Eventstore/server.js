@@ -67,7 +67,7 @@ dbserver.get("/result/:type", async function (req, res) {
   const type = req.params.type;
   try {
     const data = await readEvent(type);
-    console.log(data);
+
     return data;
   } catch (error) {
     console.log("Error occurred:", error);
