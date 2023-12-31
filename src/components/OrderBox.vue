@@ -35,19 +35,20 @@ const userPrice = ref(5);
 const upperBound = ref(500000);
 const localNowPrice = ref(0);
 
-const { Sellitem } = defineProps(["Sellitem"]);
+const Sellitem = ref("");
 
 const SubmitEvent = async () => {
   await fetchIncrement();
+  await fetchItem();
   //console.log("local=", localNowPrice.value);
   if (upperBound.value > localNowPrice.value + userPrice.value) {
     const body = {
       username: userName.value,
-      type: Sellitem,
-      price: localNowPrice.value + userPrice.value,
+      type: Sellitem.value,
+      price: parseInt(localNowPrice.value) + parseInt(userPrice.value),
       increment: userPrice.value,
     };
-
+    //console.log(body);
     const result = await axios.post("http://localhost:3000/order", body);
     alert(result.data);
   } else {
@@ -57,13 +58,26 @@ const SubmitEvent = async () => {
 
 const fetchIncrement = async () => {
   const result = await axios.get(
-    `http://localhost:3000/result/order_result_Apple`
+    `http://localhost:3000/result/orderconference`
   );
-  //console.log("befororder=", result.data);
   if (result.data === "Error") {
     console.log("Error=", result.data);
   } else {
-    localNowPrice.value = result.data[0].sum;
+    localNowPrice.value = result.data[0].metadata.NowPrice;
+  }
+};
+
+const fetchItem = async () => {
+  const result = await axios.get(
+    `http://localhost:3000/result/orderconference`
+  );
+  //console.log(result.data);
+  if (result.data === "Error") {
+    console.log("Fetch Item Error!");
+  } else {
+    result.data = result.data.filter((item) => item.type === "Itemtype")[0];
+    //console.log(result.data);
+    Sellitem.value = result.data.ItemName;
   }
 };
 </script>

@@ -2,7 +2,7 @@
   <div class="cwrapper alt">
     <div class="content">
       <div class="cbox">
-        <h3>出價</h3>
+        <h3>替換商品</h3>
 
         <div class="box">
           <div>
@@ -11,6 +11,9 @@
 
             <p>起始金額</p>
             <input class="textbox" type="text" v-model="price" />
+
+            <p>商品圖片</p>
+            <input class="textbox" type="text" v-model="picURL" />
 
             <p>結束日期</p>
             <input class="textbox" type="text" v-model="etime" />
@@ -38,17 +41,25 @@ import axios from "axios";
 
 const ItemName = ref("iPhone16");
 const price = ref(60);
-const etime = ref(moment().add(1, "M").format("YYYY/MM/DD HH:mm"));
+const etime = ref(moment().add(1, "M").format("YYYY/MM/DD HH:mm:ss"));
+const picURL = ref(
+  "https://s.yimg.com/cl/api/res/1.2/S3jWymbcJzjw9oLcpyyejA--/YXBwaWQ9eXR3YXVjdGlvbnNlcnZpY2U7aD03MDA7cT04NTtyb3RhdGU9YXV0bzt3PTcwMA--/https://s.yimg.com/ob/image/c6c14377-d518-415c-a2ee-fae2ea9a4d44.jpg"
+);
 
 const SubmitItem = async () => {
   const body = {
     ItemName: ItemName.value,
-    Picture:
-      "https://s.yimg.com/cl/api/res/1.2/S3jWymbcJzjw9oLcpyyejA--/YXBwaWQ9eXR3YXVjdGlvbnNlcnZpY2U7aD03MDA7cT04NTtyb3RhdGU9YXV0bzt3PTcwMA--/https://s.yimg.com/ob/image/c6c14377-d518-415c-a2ee-fae2ea9a4d44.jpg",
-    stime: etime.value,
+    Picture: picURL.value,
+    etime: etime.value,
     price: price.value,
   };
   const result = await axios.post("http://localhost:3000/add", body);
+  await axios.post("http://localhost:3000/order", {
+    type: ItemName.value,
+    userName: null,
+    increment: 0,
+    price: price.value,
+  });
   alert(result.data);
 };
 </script>

@@ -7,7 +7,7 @@
         :StartPrice="StartPrice"
       />
 
-      <OrderBox :Sellitem="Sellitem" :NowPrice="NowPrice" />
+      <OrderBox />
       <div class="clear"></div>
     </div>
   </div>
@@ -28,23 +28,39 @@ import ItemShow from "@/components/ItemShow.vue";
 import ListBox from "@/components/ListBox.vue";
 import OrderBox from "@/components/OrderBox.vue";
 
-const Sellitem = ref("Apple iPhone 12 Pro 256G");
+const Sellitem = ref("");
 
 const StartPrice = 60;
 const NowPrice = ref(0);
 
+const fetchItem = async () => {
+  const result = await axios.get(
+    `http://localhost:3000/result/orderconference`
+  );
+  //console.log(result.data);
+  if (result.data === "Error") {
+    console.log("Fetch Item Error!");
+  } else {
+    result.data = result.data.filter((item) => item.type === "Itemtype")[0];
+    // console.log("itemname=", result.data.ItemName);
+    Sellitem.value = result.data.ItemName;
+  }
+};
+fetchItem();
+
 const fetchNowPrice = async (type) => {
   const result = await axios.get(
-    `http://localhost:3000/result/order_result_Apple`
+    `http://localhost:3000/result/orderconference`
   );
   //console.log(result.data);
   if (result.data === "Error") {
     console.log("Fetch NowPrice Error!");
   } else {
-    NowPrice.value = result.data[0].sum;
+    NowPrice.value = result.data[0].metadata.NowPrice;
   }
 };
 
+fetchNowPrice();
 const timer = setInterval(() => {
   fetchNowPrice();
 }, 3000);

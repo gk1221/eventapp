@@ -22,27 +22,43 @@ import moment from "moment";
 const response = ref(null);
 const ListType = defineProps({ orderType: String });
 
+const fromnow = ref("");
+
 const formattedDate = (time) => moment(time).format("YYYY/MM/DD HH:mm:ss");
 
 const fetchData = async () => {
   const result = await axios.get(`http://localhost:3000/list`);
+  await fetchItem();
   //console.log(result.data);
   if (result.data !== "Error") {
     response.value = result.data
       .filter((item) => item.type === ListType["orderType"])
+      .filter((item) => item.time >= fromnow.value)
       .map((item) => {
         // 將每個物件複製到新的物件中
-        if (item.type === ListType["orderType"]) {
-          const newItem = { ...item };
-          newItem.time = formattedDate(item.time);
-          return newItem;
-        }
+        const newItem = { ...item };
+        newItem.time = formattedDate(item.time);
+        return newItem;
       });
+    // console.log(response.value);
   } else {
     console.log("Fetching List data Error!");
   }
 };
 
+const fetchItem = async () => {
+  const result = await axios.get(
+    `http://localhost:3000/result/orderconference`
+  );
+  //console.log(result.data);
+  if (result.data === "Error") {
+    console.log("Fetch Item Error!");
+  } else {
+    result.data = result.data.filter((item) => item.type === "Itemtype")[0];
+    //console.log(result.data);
+    fromnow.value = result.data.time;
+  }
+};
 fetchData();
 
 const timer = setInterval(() => fetchData(), 3000);

@@ -57,6 +57,7 @@ const readEvent = async (stream) => {
       type: resolvedEvent.event.type,
       people: resolvedEvent.event.metadata.UserName,
       time: resolvedEvent.event.created,
+      metadata: resolvedEvent.event.metadata,
       orderprice: resolvedEvent.event.metadata.NowPrice,
     });
   }

@@ -3,10 +3,7 @@
     <h3>{{ Sellitem }}</h3>
     <div class="flist">
       <p ref="pic" @click="imgLarger">
-        <img
-          src="https://s.yimg.com/cl/api/res/1.2/S3jWymbcJzjw9oLcpyyejA--/YXBwaWQ9eXR3YXVjdGlvbnNlcnZpY2U7aD03MDA7cT04NTtyb3RhdGU9YXV0bzt3PTcwMA--/https://s.yimg.com/ob/image/c6c14377-d518-415c-a2ee-fae2ea9a4d44.jpg"
-          alt=""
-        />
+        <img :src="picURL" alt="Null" />
       </p>
     </div>
     <div class="flist">
@@ -19,24 +16,28 @@
     </div>
     <div class="flist">
       <p>起標時間</p>
-      <span>2023/12/01 22:00:00</span>
+      <span>{{ StartTime }}</span>
     </div>
     <div class="flist">
       <p>結標時間</p>
-      <span>2024/01/31 23:59:00</span>
+      <span>{{ EndTime }}</span>
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
-const { NowPrice, Sellitem, StartPrice } = defineProps([
-  "NowPrice",
-  "Sellitem",
-  "StartPrice",
-]);
+import axios from "axios";
+import moment from "moment";
 
-const pic = ref(null);
+const { NowPrice } = defineProps(["NowPrice"]);
+
+const Sellitem = ref("ItemName");
+const StartPrice = ref(0);
+const StartTime = ref(moment().add(1, "M").format("YYYY/MM/DD HH:mm"));
+const EndTime = ref(moment().add(1, "M").format("YYYY/MM/DD HH:mm"));
+const picURL = ref("");
+const pic = ref("");
 
 const imgLarger = () => {
   const item = pic.value;
@@ -46,6 +47,27 @@ const imgLarger = () => {
     item.classList.add("larger");
   }
 };
+const formattedDate = (time) => moment(time).format("YYYY/MM/DD HH:mm:ss");
+
+const fetchItem = async () => {
+  const result = await axios.get(
+    `http://localhost:3000/result/orderconference`
+  );
+  //console.log(result.data);
+  if (result.data === "Error") {
+    console.log("Fetch NowPrice Error!");
+  } else {
+    result.data = result.data.filter((item) => item.type === "Itemtype")[0];
+    Sellitem.value = result.data.ItemName;
+    StartPrice.value = result.data.StartPrice;
+    picURL.value = result.data.Picture;
+    StartTime.value = formattedDate(result.data.time);
+    //console.log();
+    EndTime.value = formattedDate(result.data.metadata.Endtime);
+    //  console.log(result.data);
+  }
+};
+fetchItem();
 </script>
 <style scoped>
 .boxdiv {

@@ -9,7 +9,7 @@
           <router-link :to="{ name: 'order' }"> 下標模擬 </router-link>
         </li>
         <li class="dash">
-          <router-link :to="{ name: 'item' }"> 增加商品 </router-link>
+          <router-link :to="{ name: 'item' }"> 替換商品 </router-link>
         </li>
         <li class="last">
           <router-link v-if="show_state" :to="{ name: 'state' }">
