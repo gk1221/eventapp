@@ -3,7 +3,7 @@
     <h3>{{ Sellitem }}</h3>
     <div class="flist">
       <p ref="pic" @click="imgLarger">
-        <img :src="picURL" alt="Null" />
+        <img :src="picURL" alt="圖片存取失敗/尚未新增商品" />
       </p>
     </div>
     <div class="flist">
