@@ -12,7 +12,9 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 npm install
 ```
 
-### db setup(macos arm64)
+### db setup
+#### MAC image : eventstore/eventstore:23.6.0-alpha-arm64v8
+#### Windows image : image: eventstore/eventstore:23.10.0-bookworm-slim
 
 ```
 mkdir certs
