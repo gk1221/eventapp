@@ -13,15 +13,19 @@ npm install
 ```
 
 
-### db selection
+### DB selection
 於 https://www.eventstore.com/downloads/23.10
 選擇對應版本後替換 docker-compose.yaml 檔案 L20
 ```
   node1.eventstore: &template
     image: <docker url>
 ```
+
+
 e.g.
+
 MAC image : eventstore/eventstore:23.6.0-alpha-arm64v8
+
 Windows image : eventstore/eventstore:23.10.0-bookworm-slim
 
 ```
