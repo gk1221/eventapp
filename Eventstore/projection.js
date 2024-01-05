@@ -9,20 +9,18 @@ fromStream("orderconference")
   .when({
     $init: function () {
       return {
-        sum: 0,
+        sum: 2,
         users: {},
-        thing: "Apple iPhone 12 Pro 256G",
+        things: {},
       };
     },
-    "Apple iPhone 12 Pro 256G": function (state, event) {
-      state.sum += parseInt(event.data.increment);
-
-      var user = event.metadata.UserName;
-
-      if (!state.users.hasOwnProperty(user)) {
-        state.users[user] = event.data.increment;
+    Itemtype: function (state, event) {
+      var thing = event.data.ItemName;
+      state.sum = 3;
+      if (!state.things.hasOwnProperty(thing)) {
+        state.things[thing] = 1;
       } else {
-        state.users[user] += event.data.increment;
+        state.things[thing] += 1;
       }
     },
   })

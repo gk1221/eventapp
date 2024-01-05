@@ -29,6 +29,12 @@
             />
           </div>
         </div>
+        <div>
+          <h4>已新增的商品次數</h4>
+          <div v-for="(thing, index) in Things" :key="index">
+            <p>{{ index }} : {{ thing }}</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -45,6 +51,7 @@ const etime = ref(moment().add(1, "M").format("YYYY/MM/DD HH:mm:ss"));
 const picURL = ref(
   "https://s.yimg.com/cl/api/res/1.2/S3jWymbcJzjw9oLcpyyejA--/YXBwaWQ9eXR3YXVjdGlvbnNlcnZpY2U7aD03MDA7cT04NTtyb3RhdGU9YXV0bzt3PTcwMA--/https://s.yimg.com/ob/image/c6c14377-d518-415c-a2ee-fae2ea9a4d44.jpg"
 );
+const Things = ref({});
 
 const SubmitItem = async () => {
   const body = {
@@ -61,7 +68,22 @@ const SubmitItem = async () => {
     price: price.value,
   });
   alert(result.data);
+  get_thing();
 };
+
+const get_thing = async () => {
+  const result = await axios.get(
+    `http://localhost:3000/result/order_result_Apple`
+  );
+
+  if (result.data === "Error") {
+    console.log("Fetch things Error!");
+  } else {
+    console.log(result.data[0]);
+    Things.value = result.data[0].things;
+  }
+};
+get_thing();
 </script>
 
 <style scoped>
